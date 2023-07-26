@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "meo.comick.pictures",
+        port: "",
+      },
+    ],
+  },
+};
 
 module.exports = nextConfig
