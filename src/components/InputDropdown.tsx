@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from "react";
-import picture from "../../public/download.png";
 import Image from "next/image";
 
 interface InputDropdownProps {
@@ -9,7 +8,7 @@ interface InputDropdownProps {
     md_covers: { w: number; h: number; b2key: string }[];
   }[];
 
-  callback: (option: string) => boolean;
+  callback: (option: comicData) => boolean;
 }
 
 type comicData = {
@@ -52,10 +51,10 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
     setHighlightedOption(0);
   };
 
-  const handleCallback = (option: string) => {
+  const handleCallback = (option: comicData) => {
     setInputValue("");
     setFilteredOptions([]);
-    console.log(option + ":" + callback(option));
+    console.log(option.title + ":" + callback(option));
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -75,7 +74,9 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
       }
     } else if (event.key === "Enter") {
       // If the enter key is pressed and there is an onOptionSelected function, call it with the highlighted option
-      handleCallback(filteredOptions[highlightedOption].title);
+
+      filteredOptions.length > 0 &&
+        handleCallback(filteredOptions[highlightedOption]);
     }
   };
 
@@ -96,7 +97,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
         type="search"
         id="default-search"
         className="block w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-        placeholder="Guess the manwha"
+        placeholder="Guess the manhwa"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         value={inputValue}
@@ -116,7 +117,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
               } hover:bg-gray-300 cursor-pointer`}
               key={i}
               onClick={() => {
-                handleCallback(option.title);
+                handleCallback(option);
               }}
             >
               <Image
