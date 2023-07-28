@@ -8,6 +8,7 @@ export const apiGetList = async () => {
       method: "GET",
       url: "https://api.comick.app/v1.0/search",
       params: { country: "kr", limit: 300, page: i },
+      headers: { "Access-Control-Allow-Origin": "*" },
     };
 
     requests.push(axios.request(manhwaFind));
