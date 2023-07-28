@@ -3,6 +3,11 @@ import Image from "next/image";
 
 interface InputDropdownProps {
   options: {
+    year: number;
+    genres: number[];
+    status: number;
+    demographic: number;
+    last_chapter: number;
     id: number;
     title: string;
     md_covers: { w: number; h: number; b2key: string }[];
@@ -14,8 +19,12 @@ interface InputDropdownProps {
 type comicData = {
   title: string;
   imgSrc: string;
+  year: number;
+  genres: number[];
+  status: number;
+  demographic: number;
+  last_chapter: number;
 };
-
 type ImageLoaderProps = {
   src: string;
   width: number;
@@ -29,10 +38,12 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
   const [highlightedOption, setHighlightedOption] = useState(0);
   const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
 
+  //Image loader to ensure quality
   const imageLoader = ({ src, width, quality }: ImageLoaderProps): string => {
     return `https://meo.comick.pictures/${src}?w=${width}&q=${quality || 100}`;
   };
 
+  //handles input change
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const userInput = event.currentTarget.value;
 
@@ -44,6 +55,11 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
       .map((option) => ({
         title: option.title,
         imgSrc: option.md_covers[0].b2key,
+        year: option.year,
+        demographic: option.demographic,
+        status: option.status,
+        last_chapter: option.last_chapter,
+        genres: option.genres,
       }));
 
     setInputValue(userInput);
@@ -51,12 +67,14 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
     setHighlightedOption(0);
   };
 
+  //function onsubmit
   const handleCallback = (option: comicData) => {
     setInputValue("");
     setFilteredOptions([]);
     console.log(option.title + ":" + callback(option));
   };
 
+  //keyboard functionality
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "ArrowDown") {
       // If the down arrow key is pressed and the highlighted index is less than the number of options, increase the highlighted index
@@ -80,10 +98,12 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
     }
   };
 
+  //update the refs has the list change
   useEffect(() => {
     optionRefs.current = optionRefs.current.slice(0, filteredOptions.length);
   }, [filteredOptions]);
 
+  //scroll into view when using key navigation
   useEffect(() => {
     optionRefs.current[highlightedOption]?.scrollIntoView({
       behavior: "smooth",
@@ -102,6 +122,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({ options, callback }) => {
         onKeyDown={handleKeyDown}
         value={inputValue}
         required
+        autoComplete="off"
       />
       {inputValue.length > 2 && filteredOptions.length > 0 && (
         <ul

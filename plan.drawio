@@ -1,0 +1,16 @@
+<mxfile host="65bd71144e">
+    <diagram id="YljvUrD7k40rJ_MuC1-r" name="Page-1">
+        <mxGraphModel dx="661" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Add actual loader for images&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Include md titles in search&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;add beginning modal for more countries&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;add official link at correct page (with confetti)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;add difficulty mode&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;fillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="240" width="320" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;ul&gt;&lt;li&gt;Year&lt;/li&gt;&lt;li&gt;Genres&lt;/li&gt;&lt;li&gt;Status&lt;/li&gt;&lt;li&gt;Demographic&lt;/li&gt;&lt;li&gt;chapters&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;fillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="40" width="250" height="170" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

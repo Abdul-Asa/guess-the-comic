@@ -1,16 +1,20 @@
 import axios from "axios";
 
 export const apiGetList = async () => {
-  const manhwaFind = {
-    method: "GET",
-    url: "https://api.comick.app/v1.0/search",
-    params: { country: "kr", limit: 300 },
-  };
+  let requests: Promise<any>[] = [];
 
-  try {
-    const response = await axios.request(manhwaFind);
-    return response.data;
-  } catch (error) {
-    console.error(error);
+  for (let i = 1; i < 10; i++) {
+    const manhwaFind = {
+      method: "GET",
+      url: "https://api.comick.app/v1.0/search",
+      params: { country: "kr", limit: 300, page: i },
+    };
+
+    requests.push(axios.request(manhwaFind));
   }
+
+  let responses: any[] = await Promise.all(requests);
+  responses = responses.map((response) => response.data);
+
+  return responses.flat();
 };
