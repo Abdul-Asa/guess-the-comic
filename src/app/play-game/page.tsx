@@ -4,7 +4,7 @@ import { apiGetList } from "@/lib/api";
 import picture from "../../../public/download.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import AnimatedDiv from "@/components/AnimatedBox";
 import Modal from "@/components/Modal";
 
@@ -134,9 +134,9 @@ export default function Manhwa() {
   };
 
   //populate list
-  useEffect(() => {
-    loadNewRound();
-  }, []);
+  // useEffect(() => {
+  //   // loadNewRound();
+  // }, []);
 
   return (
     <main className="container block p-4 md:p-4 min-h-screen">
@@ -154,8 +154,9 @@ export default function Manhwa() {
               width={275}
               height={388}
               className="w-full h-auto rounded-lg"
-              src={picture}
+              src={"7qdXk.png"}
               alt={"Guess the manhwa"}
+              loader={imageLoader}
             />
           ) : (
             <Image
